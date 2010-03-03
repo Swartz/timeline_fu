@@ -28,7 +28,7 @@ as you want.
 They are hooked for you after standard ActiveRecord events. In
 the previous example, it's an after_create on Posts. 
 
-If you want to manually trigger an event outside of normal callbacks, take a look at <tt>TimelineEvent.fire</tt>. It has a syntax similar to the <tt>fires</tt> event on models:
+If you want to manually trigger an event outside of normal callbacks, take a look at <tt>TimelineEvent.fire</tt>. It has a syntax similar to the <tt>fires</tt> event on models. For your options hash, you may pass symbol references (<tt>{:actor => :user}</tt>) or full instances:
 
   TimelineEvent.fire(@user_notice, 'new_notice', {:actor => @user})
 

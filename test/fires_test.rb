@@ -37,6 +37,11 @@ class FiresTest < Test::Unit::TestCase
     TimelineEvent.expects(:create!).with(:event_type => 'test_event', :subject => @list, :actor => @james)
     TimelineEvent.fire(@list, 'test_event', {:actor => :author})
   end
+  
+  def test_should_manually_fire_using_full_instances
+    TimelineEvent.expects(:create!).with(:event_type => 'test_event', :subject => @james, :actor => @mat)
+    TimelineEvent.fire(@james, 'test_event', {:actor => @mat})
+  end
 
   def test_exception_raised_if_on_missing
     # This needs to be tested with should_raise, to check out the msg content

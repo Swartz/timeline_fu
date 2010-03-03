@@ -11,7 +11,7 @@ class TimelineEvent < ActiveRecord::Base
       when :self
         memo[sym] = instance
       else
-        memo[sym] = instance.send(opts[sym]) if opts[sym]
+        memo[sym] = (opts[sym].kind_of?(Symbol) ? instance.send(opts[sym]) : opts[sym]) if opts[sym]
       end
       memo
     end
