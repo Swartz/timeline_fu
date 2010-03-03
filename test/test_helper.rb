@@ -5,6 +5,7 @@ require 'test/unit'
 require 'logger'
 
 require File.dirname(__FILE__)+'/../lib/timeline_fu'
+require File.dirname(__FILE__)+'/../generators/timeline_fu/templates/model'
 
 ActiveRecord::Base.configurations = {'sqlite3' => {:adapter => 'sqlite3', :database => ':memory:'}}
 ActiveRecord::Base.establish_connection('sqlite3')
@@ -63,8 +64,6 @@ class Comment < ActiveRecord::Base
                           :subject => :list,
                           :secondary_subject => :self
 end
-
-TimelineEvent = Class.new
 
 class Test::Unit::TestCase
   protected

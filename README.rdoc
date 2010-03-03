@@ -28,6 +28,10 @@ as you want.
 They are hooked for you after standard ActiveRecord events. In
 the previous example, it's an after_create on Posts. 
 
+If you want to manually trigger an event outside of normal callbacks, take a look at <tt>TimelineEvent.fire</tt>. It has a syntax similar to the <tt>fires</tt> event on models:
+
+  TimelineEvent.fire(@user_notice, 'new_notice', {:actor => @user})
+
 === Parameters for #fires
 
 You can supply a few parameters to fires, two of them are mandatory.

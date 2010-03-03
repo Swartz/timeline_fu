@@ -26,6 +26,17 @@ class FiresTest < Test::Unit::TestCase
                                          :event_type        => 'comment_created')
     @comment.save
   end
+  
+  def test_should_manually_fire_and_assign_default_event_type
+    TimelineEvent.expects(:create!).with(:event_type => 'test_event', :subject => @james)
+    TimelineEvent.fire(@james, 'test_event')
+  end
+  
+  def test_should_manually_fire_and_assign_object_associations
+    @list = List.new(hash_for_list(:author => @james))
+    TimelineEvent.expects(:create!).with(:event_type => 'test_event', :subject => @list, :actor => @james)
+    TimelineEvent.fire(@list, 'test_event', {:actor => :author})
+  end
 
   def test_exception_raised_if_on_missing
     # This needs to be tested with should_raise, to check out the msg content
