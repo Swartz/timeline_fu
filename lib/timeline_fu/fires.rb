@@ -23,7 +23,8 @@ module TimelineFu
             when :self
               memo[sym] = self
             else
-              memo[sym] = send(opts[sym]) if opts[sym]
+              #memo[sym] = send(opts[sym]) if opts[sym]
+              memo[sym] = (opts[sym].kind_of?(Symbol) ? send(opts[sym]) : opts[sym]) if opts[sym]
             end
             memo
           end
